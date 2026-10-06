@@ -1,0 +1,26 @@
+{
+  "name": "smoke-rain-year-blog",
+  "version": "1.0.0",
+  "description": "基于 VitePress + Teek 主题的开发错误/难点收集博客",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "vitepress",
+    "blog",
+    "teek"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.3",
+    "vitepress-theme-teek": "^1.0.0",
+    "vitepress-plugin-mermaid": "^2.0.16",
+    "vitepress-plugin-pagefind": "^0.4.5",
+    "vitepress-plugin-rss": "^0.2.7",
+    "vue": "^3.5.13"
+  }
+}
