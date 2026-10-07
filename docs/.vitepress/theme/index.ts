@@ -7,6 +7,8 @@ import { h } from 'vue'
 import ContributionChart from './components/ContributionChart.vue'
 // 分类入口页头部组件（分类标题 + 描述 + query 自动补全）
 import CategoryPageHeader from './components/CategoryPageHeader.vue'
+// 文章底部版权标注组件（作者 / 链接 / 许可协议声明）
+import ArticleCopyright from './components/ArticleCopyright.vue'
 
 // ===== Teek 样式增强（需显式引入才会生效） =====
 // 一级标题渐变色效果（用户明确要求的样式增强）
@@ -19,6 +21,8 @@ import 'vitepress-theme-teek/theme-chalk/tk-article-heading-highlight.css'
 import 'vitepress-theme-teek/theme-chalk/tk-home-card-hover.css'
 // Banner 描述文字渐变色（配合全屏壁纸效果更好）
 import 'vitepress-theme-teek/theme-chalk/tk-banner-desc-gradient.css'
+// 自定义全局样式覆盖（侧边栏标题单行省略号等，需放在 Teek 样式之后）
+import './custom.css'
 
 // 导出主题配置，extends 表示继承 Teek 主题的所有功能
 export default {
@@ -30,6 +34,8 @@ export default {
       'teek-archives-top-before': () => h(ContributionChart),
       // 分类入口页（前端/后端/工具）文章列表上方插入分类标题
       'teek-home-post-before': () => h(CategoryPageHeader),
+      // 文章正文末尾（"最后更新时间"之前）插入版权标注
+      'teek-doc-update-before': () => h(ArticleCopyright),
     }),
   // 全局注册自定义组件（页面 md 中也可通过 <ContributionChart /> 使用）
   enhanceApp({ app }) {

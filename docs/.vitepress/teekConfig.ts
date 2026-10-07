@@ -48,7 +48,7 @@ const teekConfig = defineTeekConfig({
 
   // ===== 博主信息（首页侧边卡片） =====
   blogger: {
-    name: '开发者', // 博主昵称
+    name: '烟雨流年', // 博主昵称（版权标注、文章卡片等处引用）
     slogan: '代码虐我千百遍，我待代码如初恋', // 个性签名
     avatar: '/img/avatar.jpg', // 头像地址，暂留空，后续替换
     shape: 'circle', // 头像形状：square 方形 / circle 圆形 / circle-rotate 悬停旋转
