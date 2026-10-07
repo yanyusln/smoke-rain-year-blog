@@ -8,7 +8,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "new": "node scripts/new-post.mjs",
-    "deploy": "npm run docs:build && git add -A && (git commit -m \"docs: 更新博客内容\" || echo 无新变更，跳过提交) && git push origin master && gh-pages -d docs/.vitepress/dist -b main --nojekyll -m \"deploy: 发布站点构建产物\""
+    "deploy": "npm run docs:build && git add -A && (git commit -m \"docs: 更新博客内容\" || echo 无新变更，跳过提交) && git push origin master && npm run publish-dist",
+    "publish-dist": "node scripts/deploy-pages.mjs"
   },
   "keywords": [
     "vitepress",
@@ -18,7 +19,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.16",
     "vitepress-plugin-pagefind": "^0.4.5",
