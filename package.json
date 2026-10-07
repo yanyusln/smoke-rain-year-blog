@@ -6,7 +6,8 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "deploy": "npm run docs:build && git add -A && (git commit -m \"docs: 更新博客内容\" || echo 无新变更，跳过提交) && git push origin master"
   },
   "keywords": [
     "vitepress",
