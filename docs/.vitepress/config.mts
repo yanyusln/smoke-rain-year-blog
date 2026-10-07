@@ -9,8 +9,7 @@ import { pagefindPlugin } from 'vitepress-plugin-pagefind'
 import { RssPlugin } from 'vitepress-plugin-rss'
 
 // 站点基础信息配置
-// TODO: 部署前请将 baseUrl 替换为你的实际 GitHub Pages 地址
-const SITE_URL = 'https://your-username.github.io'
+const SITE_URL = 'https://yanyusln.github.io'
 
 // 构建基础配置（不含 mermaid，后续由 withMermaid 包装注入）
 const baseConfig = defineConfig({
@@ -21,7 +20,7 @@ const baseConfig = defineConfig({
   title: '烟雨流年的博客', // 站点标题
   description: '记录日常开发中遇到的难点与错误，沉淀排查思路与解决方案', // 站点描述
   lang: 'zh-CN', // 语言
-  base: '/', // 部署根路径（根仓库 username.github.io 时为 '/'）
+  base: '/smoke-rain-year-blog/', // 部署根路径（对应 GitHub Pages 子目录仓库）
   cleanUrls: true, // 启用简洁 URL（去除 .html 后缀）
   ignoreDeadLinks: true, // 忽略死链（永久链接插件需要）
   lastUpdated: true, // 显示最后更新时间
