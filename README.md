@@ -10,7 +10,7 @@ npm run docs:dev      # 本地开发预览（http://localhost:5173）
 npm run docs:build    # 构建生产版本（输出到 docs/.vitepress/dist）
 npm run docs:preview  # 本地预览构建产物（http://localhost:4173）
 npm run new -- 分类/序号.标题  # 生成新文章模板（自动填充 title/date/categories）
-npm run deploy        # 一键部署：本地构建验证 + 自动提交 + 推送 master 触发部署
+npm run deploy        # 一键部署：本地构建 + 源码提交到 master + 构建产物推送到 main
 ```
 
 ## ⚠️ 重要注意事项
@@ -69,21 +69,27 @@ description: ''        # 一句话摘要（显示在文章卡片上）
 
 ### 5. 部署到 GitHub Pages
 
-部署链路已全部配置完成，日常更新只需一条命令：
+部署采用「双分支」模式，所有操作都在 `master` 分支上完成：
+
+- `master` 分支：博客源码（日常写作、提交都在这里）
+- `main` 分支：站点构建产物（由 deploy 命令自动生成，请勿手动修改）
+
+日常更新只需一条命令：
 
 ```bash
 npm run deploy
 ```
 
-执行逻辑：本地构建验证（失败则中断，不会推送）→ 自动提交所有变更（无变更则跳过）→
-推送 `master` 分支 → GitHub Actions 自动构建并发布到
+执行逻辑：本地构建验证（失败则中断）→ 提交源码变更到 `master` 并推送 →
+将构建产物推送到 `main` 分支 → GitHub Pages 从 `main` 分支自动发布站点：
 https://yanyusln.github.io/smoke-rain-year-blog/
 
-关键配置（均已就绪，一般无需改动）：
+⚠️ 注意：每次部署会完整替换 `main` 分支内容（仅保留最新一次提交），
+查看源码历史请看 `master` 分支。
 
-- `base: '/smoke-rain-year-blog/'` 与 `SITE_URL`：见 [docs/.vitepress/config.mts](docs/.vitepress/config.mts)
-- Pages 来源已选 **GitHub Actions**（仓库 Settings → Pages）
-- 工作流定义：[.github/workflows/deploy.yml](.github/workflows/deploy.yml)（推送到 `master` 触发，也可在 Actions 页面手动触发）
+首次配置（一次性）：仓库 **Settings → Pages → Build and deployment → Source**
+选 **Deploy from a branch**，Branch 选 `main`，文件夹选 `/ (root)`，保存。
+deploy 命令已带 `--nojekyll` 参数，自动绕过 GitHub 的 Jekyll 处理。
 
 ### 6. 图片 / 图标素材
 
@@ -102,7 +108,7 @@ smoke-rain-year-blog/
 │   ├── 前端/ 后端/ 工具/  # 分类目录（index.md 为入口页，文章按分类放入对应目录）
 │   └── index.md         # 首页
 ├── scripts/             # 本地脚本（new-post.mjs：文章模板生成）
-└── .github/workflows/   # GitHub Actions 部署工作流（deploy.yml）
+└── docs/.vitepress/dist # 构建产物输出目录（gitignore，由 deploy 推送到 main 分支）
 ```
 
 ## 已集成的插件
